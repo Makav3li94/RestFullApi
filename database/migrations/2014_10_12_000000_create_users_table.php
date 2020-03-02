@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('verified')->default(User::NOTVERIFIED);
-            $table->string('verification_token');
+            $table->string('verification_token')->nullable();
             $table->string('admin')->default(User::NOTADMIN);
             $table->rememberToken();
             $table->timestamps();

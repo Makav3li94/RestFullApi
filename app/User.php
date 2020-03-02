@@ -41,6 +41,8 @@ class User extends Authenticatable {
 		'verification_token'
 	];
 
+	protected $table = 'users';
+
 	/**
 	 * The attributes that should be cast to native types.
 	 *
