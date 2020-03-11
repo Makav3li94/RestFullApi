@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration {
 			$table->string( 'status' )->default( Product::UNAVAILABLE_PRODUCT );
 			$table->string( 'image' )->nullable();
 			$table->timestamps();
-
+			$table->softDeletes();
 			$table->foreign('seller_id')->references('id')->on('users');
 		} );
 	}

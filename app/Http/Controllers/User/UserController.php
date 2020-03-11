@@ -15,7 +15,6 @@ class UserController extends ApiController {
 	public function index() {
 		$users = User::all();
 
-//        return response()->json(['data'=>$users],200);
 		return $this->showAll( $users );
 	}
 
@@ -42,7 +41,7 @@ class UserController extends ApiController {
 
 		$user = User::create( $data );
 
-		return response()->json( [ 'data' => $user ], 200 );
+		return $this->showOne( $user );
 	}
 
 	/**
@@ -52,9 +51,7 @@ class UserController extends ApiController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show( $id ) {
-		$user = User::findOrFail( $id );
-
+	public function show( User $user ) {
 		return $this->showOne( $user );
 	}
 
@@ -90,13 +87,13 @@ class UserController extends ApiController {
 
 		if ( $request->has( 'admin' ) ) {
 			if ( ! $user->isVerified() ) {
-				return $this->errorResponse('not verified user',409);
+				return $this->errorResponse( 'not verified user', 409 );
 			}
 			$user->admin = $request->admin;
 		}
 
 		if ( ! $user->isDirty() ) {
-			return $this->errorResponse('nothing changed',422);
+			return $this->errorResponse( 'nothing changed', 422 );
 		}
 
 		$user->save();
@@ -113,8 +110,7 @@ class UserController extends ApiController {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy( $id ) {
-		$user = User::findOrFail( $id );
+	public function destroy( User $user ) {
 		$user->delete();
 
 		return response()->json( [ 'data', $user ], 200 );

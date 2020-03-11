@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('admin')->default(User::NOTADMIN);
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
