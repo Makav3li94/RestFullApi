@@ -20,6 +20,10 @@ return [
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
+	'sparkpost' =>[
+		'secret' => env('SPARKPOST_SECRET')
+	],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

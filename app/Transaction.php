@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Transformers\TransactionTrasnformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model {
 	use SoftDeletes;
-
+	public $transformer = TransactionTrasnformer::class;
 	protected $dates = [ 'deleted_at' ];
 	protected $fillable = [
 		'quantity',
